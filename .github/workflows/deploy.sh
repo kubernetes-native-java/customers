@@ -11,6 +11,7 @@ APP_NAME=customers
 IMAGE_NAME=gcr.io/bootiful/customers:latest
 ./mvnw -DskipTests=true clean package spring-boot:build-image -Dspring-boot.build-image.imageName=${IMAGE_NAME}
 # docker run -e SPRING_PROFILES_ACTIVE=cloud -e SERVER_PORT=8082 -p 8082:8082 $IMAGE_NAME
+
 docker push $IMAGE_NAME
 echo "pushed the image to ${IMAGE_NAME}"
 mkdir -p $MANIFESTS_DIR
