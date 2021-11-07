@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 cd $GITHUB_WORKSPACE
-
 PREFIX=bootiful
-IMAGE=customers
+APP_NAME=customers
+IMAGE=$APP_NAME
 IMAGE_NAME=$PREFIX/$IMAGE
 
 ./mvnw -DskipTests=true clean package spring-boot:build-image -Dspring-boot.build-image.imageName=$IMAGE_NAME
