@@ -49,5 +49,5 @@ jobs:
 
       - name: Deploy
         run: |
-          cd $GITHUB_WORKSPACE
-          ./deploy/deploy.sh
+          cd $GITHUB_WORKSPACE/.github/workflows/
+          ./deploy.sh
