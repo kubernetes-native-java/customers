@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -e
+
 cd "${GITHUB_WORKSPACE:-$(dirname $0)/../..}"
 pwd
 MANIFESTS_DIR=$(pwd)/k8s/manifests
