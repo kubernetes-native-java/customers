@@ -5,10 +5,9 @@ cd "${GITHUB_WORKSPACE:-$(dirname $0)/../..}"
 pwd
 MANIFESTS_DIR=$(pwd)/k8s/manifests
 PREFIX=bootiful
-APP_NAME=customers
 NS=knj
 APP_NAME=customers
-IMAGE_NAME=gcr.io/bootiful/customers:latest
+IMAGE_NAME=gcr.io/${PREFIX}/${APP_NAME}:latest
 ./mvnw -DskipTests=true clean package spring-boot:build-image -Dspring-boot.build-image.imageName=${IMAGE_NAME}
 
 # docker run -e SPRING_PROFILES_ACTIVE=cloud -e SERVER_PORT=8082 -p 8082:8082 $IMAGE_NAME
