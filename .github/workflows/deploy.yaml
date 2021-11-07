@@ -43,16 +43,10 @@ jobs:
 
 
       - run: |-
-          #  Removed the docker config directory rm -rf ~/.docker
-          #  Executed docker-credential-gcr configure-docker
-          #  Stored the JSON key into variable named GOOGLE_APPLICATION_CREDENTIALS
-          #  GOOGLE_APPLICATION_CREDENTIALS=/path/to/mygcrserviceaccount.JSON
-          #  Logged in with docker command - docker login -u _json_key -p "$(cat ${GOOGLE_APPLICATION_CREDENTIALS})" https://gcr.io
-          #  Executed docker push command - docker push gcr.io/project-id/imagename:tage01
-          #  Voila, it worked like a charm!
           gcloud config set project $GCLOUD_PROJECT
           gcloud --quiet auth configure-docker
           gcloud container clusters get-credentials $GKE_CLUSTER_NAME --zone "$GCLOUD_ZONE" --project $GCLOUD_PROJECT
+          gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://gcr.io
 
       - name: Deploy
         run: |
