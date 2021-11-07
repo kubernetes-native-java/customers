@@ -7,9 +7,15 @@ PREFIX=bootiful
 NS=knj
 APP_NAME=customers
 IMAGE_NAME=gcr.io/${PREFIX}/${APP_NAME}:latest
+
 ./mvnw -DskipTests=true clean package spring-boot:build-image -Dspring-boot.build-image.imageName=${IMAGE_NAME}
 
+
 # docker run -e SPRING_PROFILES_ACTIVE=cloud -e SERVER_PORT=8082 -p 8082:8082 $IMAGE_NAME
+GOOGLE_APPLICATION_CREDENTIALS=${GITHUB_WORKSPACE}/gcp.json
+echo $GCLOUD_SA_KEY > $GOOGLE_APPLICATION_CREDENTIALS
+cat $GOOGLE_APPLICATION_CREDENTIALS | wc -l
+docker login -u _json_key -p "$(cat ${GOOGLE_APPLICATION_CREDENTIALS})" https://gcr.io
 
 docker push $IMAGE_NAME
 echo "pushed the image to ${IMAGE_NAME}"
