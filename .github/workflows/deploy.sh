@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 cd $GITHUB_WORKSPACE
 
-PREFIX=knj
+PREFIX=bootiful
 IMAGE=customers
 IMAGE_NAME=$PREFIX/$IMAGE
 
