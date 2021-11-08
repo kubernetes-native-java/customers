@@ -49,7 +49,7 @@ class CustomerRestController {
 	private final CustomerRepository repository;
 
 	@GetMapping("/customers")
-	Flux<Customer> get() {
+	Flux<Customer> customers() {
 		return this.repository.findAll();
 	}
 }
