@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 cd "${GITHUB_WORKSPACE:-$(dirname $0)/../..}"
-
+# todo this needs to use a variable
 function module_name(){
   echo "gcr.io/pgtm-jlong/$1"
 }
