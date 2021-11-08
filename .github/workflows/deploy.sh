@@ -14,7 +14,7 @@ function deploy_module() {
 
   mkdir -p "$(dirname $OUTPUT_FN)" || echo "could not create ${OUTPUT_FN}."
 
-  docker rmi -f $IMAGE_NAME
+  docker rmi -f $IMAGE_NAME || echo "no local image to delete..."
   cd $ROOT && ./mvnw -DskipTests=true clean package spring-boot:build-image -Dspring-boot.build-image.imageName=$IMAGE_NAME
   docker push $IMAGE_NAME
 
@@ -23,7 +23,8 @@ function deploy_module() {
     sed -e 's,<APP>,'${NAME}',g' |
     sed -e 's,<GCR_PROJECT>,'${GCLOUD_PROJECT}',g' >$OUTPUT_FN
   cat $OUTPUT_FN
-  kubectl apply -f $OUTPUT_FN -n $K8S_NS
+  kubectl delete -f $OUTPUT_FN -n $K8S_NS || echo "could not delete the existing deployment."
+  kubectl apply -f $OUTPUT_FN -n $K8S_NS || echo "could not deploy."
 }
 
 echo "starting in $ROOT. "
