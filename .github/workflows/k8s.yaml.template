@@ -24,6 +24,14 @@ spec:
         -   name: <APP>
             imagePullPolicy: Always
             image: gcr.io/<GCR_PROJECT>/<APP>
+            env:
+                - name: MANAGEMENT_SERVER_PORT
+                  value: "9090"
+                - name: SERVER_PORT
+                  value: "8080"
+                - name: SPRING_RSOCKET_SERVER_PORT
+                  value: "8181"
+
             readinessProbe:
                 httpGet:
                     path: /actuator/health/readiness
