@@ -12,9 +12,9 @@ function module_name(){
 function deploy_module(){
   NAME=$1
   IMAGE_NAME=$(module_name "$NAME")
-  docker rmi -f $IMAGE_NAME
-  ./mvnw -DskipTests=true clean package spring-boot:build-image -Dspring-boot.build-image.imageName=$IMAGE_NAME
-  docker push $IMAGE_NAME
+#  docker rmi -f $IMAGE_NAME
+#  ./mvnw -DskipTests=true clean package spring-boot:build-image -Dspring-boot.build-image.imageName=$IMAGE_NAME
+#  docker push $IMAGE_NAME
   OUTPUT_FN=tmp/${NAME}-generated.yaml
   mkdir -p "$(dirname $OUTPUT_FN)"
   cat k8s.yaml.template |
