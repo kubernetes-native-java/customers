@@ -15,7 +15,7 @@ function deploy_module() {
   mkdir -p "$(dirname $OUTPUT_FN)" || echo "could not create ${OUTPUT_FN}."
 
   docker rmi -f $IMAGE_NAME
-  ./mvnw -DskipTests=true clean package spring-boot:build-image -Dspring-boot.build-image.imageName=$IMAGE_NAME
+  cd $ROOT && ./mvnw -DskipTests=true clean package spring-boot:build-image -Dspring-boot.build-image.imageName=$IMAGE_NAME
   docker push $IMAGE_NAME
 
   cat $ROOT/.github/workflows/k8s.yaml.template |
