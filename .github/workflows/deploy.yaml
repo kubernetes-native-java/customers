@@ -1,8 +1,9 @@
 name: Deploy
 
 
+#  GCLOUD_ZONE : ${{ secrets.GCLOUD_ZONE  }}
 env:
-  GCLOUD_ZONE : ${{ secrets.GCLOUD_ZONE  }}
+  GCLOUD_ZONE: us-central1
   GCLOUD_PROJECT : ${{ secrets.GCLOUD_PROJECT  }}
   GKE_CLUSTER_NAME : ${{ secrets.GKE_CLUSTER_NAME  }}
   GCLOUD_SA_KEY: ${{ secrets.GCLOUD_SA_KEY }}
