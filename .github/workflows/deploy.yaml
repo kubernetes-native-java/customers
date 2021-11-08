@@ -1,12 +1,20 @@
 name: Deploy
 
 env:
+
+
+  GKE_CLUSTER_NAME: ${{ secrets.GKE_CLUSTER_NAME }}
+
   GCLOUD_ZONE: ${{ secrets.GCLOUD_ZONE  }}
   GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT }}
-  GKE_CLUSTER_NAME: ${{ secrets.GKE_CLUSTER_NAME  }}
   GCLOUD_SA_KEY: ${{ secrets.GCLOUD_SA_KEY }}
-  K8S_NS: knj
+
+  K8S_NS: ${{ secrets.K8S_NS }}
+
+  GH_PAT: ${{ secrets.GH_PAT }}
+
 on:
+
   push:
     branches: [ main ]
   pull_request:
