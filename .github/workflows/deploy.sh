@@ -26,7 +26,7 @@ function deploy_module(){
 }
 
 echo "starting in $ROOT. "
-cd $ROOT
+cd $ROOT/../..
 ls -la
 deploy_module customers
 
