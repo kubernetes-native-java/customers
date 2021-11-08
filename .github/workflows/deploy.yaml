@@ -1,16 +1,12 @@
 name: Deploy
 
-
-#  GCLOUD_ZONE : ${{ secrets.GCLOUD_ZONE  }}
 env:
   GCLOUD_ZONE: ${{ secrets.GCLOUD_ZONE  }}
   GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT }}
   GKE_CLUSTER_NAME: ${{ secrets.GKE_CLUSTER_NAME  }}
   GCLOUD_SA_KEY: ${{ secrets.GCLOUD_SA_KEY }}
-
+  K8S_NS: knj
 on:
-  #  repository_dispatch:
-  #    types: [ deploy-production-event, deploy-development-event ]
   push:
     branches: [ main ]
   pull_request:

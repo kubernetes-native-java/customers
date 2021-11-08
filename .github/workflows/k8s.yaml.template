@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: <NS>
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: <NS>
+  name: <APP>-deployment
+  labels:
+    app: <APP>
+spec:
+  selector:
+    matchLabels:
+      app: <APP>
+  template:
+    metadata:
+      labels:
+        app: <APP>
+    spec:
+      containers:
+        - name: <APP>
+          imagePullPolicy: Always
+          image: gcr.io/<GCR_PROJECT>/<APP>
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: <NS>
+  name: <APP>-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: <APP>
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
