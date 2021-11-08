@@ -23,7 +23,7 @@ function deploy_module() {
     sed -e 's,<APP>,'${NAME}',g' |
     sed -e 's,<GCR_PROJECT>,'${GCLOUD_PROJECT}',g' >$OUTPUT_FN
   cat $OUTPUT_FN
-  kubectl delete -n ns/$K8S_NS || echo "couldn't delete the $K8S_NS namespace. Maybe it doesn't exist?"
+  kubectl delete ns/$K8S_NS || echo "couldn't delete the $K8S_NS namespace. Maybe it doesn't exist?"
   kubectl apply -f $OUTPUT_FN -n $K8S_NS || echo "could not deploy."
 }
 
