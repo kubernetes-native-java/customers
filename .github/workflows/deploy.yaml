@@ -4,13 +4,13 @@ name: Deploy
 #  GCLOUD_ZONE : ${{ secrets.GCLOUD_ZONE  }}
 env:
   GCLOUD_ZONE: us-central1
-  GCLOUD_PROJECT : ${{ secrets.GCLOUD_PROJECT  }}
-  GKE_CLUSTER_NAME : ${{ secrets.GKE_CLUSTER_NAME  }}
+  GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT  }}
+  GKE_CLUSTER_NAME: ${{ secrets.GKE_CLUSTER_NAME  }}
   GCLOUD_SA_KEY: ${{ secrets.GCLOUD_SA_KEY }}
 
 on:
-#  repository_dispatch:
-#    types: [ deploy-production-event, deploy-development-event ]
+  #  repository_dispatch:
+  #    types: [ deploy-production-event, deploy-development-event ]
   push:
     branches: [ main ]
   pull_request:
@@ -35,19 +35,19 @@ jobs:
         with:
           java-version: 11
 
+
       - uses: google-github-actions/setup-gcloud@master
         with:
           version: '290.0.1'
-          service_account_key: ${{ secrets.GCLOUD_SA_KEY }}
+          service_account_key: ${{ env.GCLOUD_SA_KEY }}
           project_id: ${{ env.GCLOUD_PROJECT }}
           export_default_credentials: true
-
 
       - run: |-
           gcloud config set project $GCLOUD_PROJECT
           gcloud --quiet auth configure-docker
           gcloud container clusters get-credentials $GKE_CLUSTER_NAME --zone "$GCLOUD_ZONE" --project $GCLOUD_PROJECT
-          gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://gcr.io
+
 
       - name: Deploy
         run: |
