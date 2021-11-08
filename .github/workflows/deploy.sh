@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
+echo "trying to deploy ${APP_NAME}..."
+
 ROOT=${GITHUB_WORKSPACE:-$(cd $(dirname $0)/../.. && pwd)}
-NAME=$1
-IMAGE_NAME="gcr.io/${GCLOUD_PROJECT}/${NAME}"
+IMAGE_NAME="gcr.io/${GCLOUD_PROJECT}/${APP_NAME}"
 
 docker rmi -f $IMAGE_NAME || echo "no local image to delete..."
 cd $ROOT && ./mvnw -DskipTests=true clean package spring-boot:build-image -Dspring-boot.build-image.imageName=$IMAGE_NAME

@@ -2,7 +2,7 @@ name: Deploy
 
 env:
 
-
+  APP_NAME: customers
   GKE_CLUSTER_NAME: ${{ secrets.GKE_CLUSTER_NAME }}
 
   GCLOUD_ZONE: ${{ secrets.GCLOUD_ZONE  }}
@@ -56,4 +56,4 @@ jobs:
       - name: Deploy
         run: |
           cd $GITHUB_WORKSPACE/.github/workflows/
-          ./deploy.sh
+          ./deploy.sh $APP_NAME
