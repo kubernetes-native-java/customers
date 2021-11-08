@@ -3,7 +3,7 @@ name: Deploy
 
 #  GCLOUD_ZONE : ${{ secrets.GCLOUD_ZONE  }}
 env:
-  GCLOUD_ZONE: us-central1
+  GCLOUD_ZONE: us-central1-c
   GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT  }}
   GKE_CLUSTER_NAME: ${{ secrets.GKE_CLUSTER_NAME  }}
   GCLOUD_SA_KEY: ${{ secrets.GCLOUD_SA_KEY }}
@@ -34,7 +34,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-
 
       - uses: google-github-actions/setup-gcloud@master
         with:
