@@ -17,12 +17,12 @@ function deploy_module(){
 #  docker push $IMAGE_NAME
   OUTPUT_FN=tmp/${NAME}-generated.yaml
   mkdir -p "$(dirname $OUTPUT_FN)" || echo "could not create ${OUTPUT_FN}."
-  cat k8s.yaml.template |
+  cat $ROOT/.github/workflows/k8s.yaml.template |
     sed -e 's,<NS>,'${K8S_NS}',g' | \
     sed -e 's,<APP>,'${NAME}',g'  | \
     sed -e 's,<GCR_PROJECT>,'${GCLOUD_PROJECT}',g' > $OUTPUT_FN
   cat $OUTPUT_FN
-  kubectl apply -f $OUTPUT_FN -n $K8S_NS
+#  kubectl apply -f $OUTPUT_FN -n $K8S_NS
 }
 
 echo "starting in $ROOT. "
