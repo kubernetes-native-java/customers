@@ -5,7 +5,7 @@ name: Deploy
 env:
   GCLOUD_ZONE: us-central1-c
 #  GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT  }}
-#  GCLOUD_PROJECT: pgtm-jlong
+  GCLOUD_PROJECT: pgtm-jlong
   GKE_CLUSTER_NAME: ${{ secrets.GKE_CLUSTER_NAME  }}
   GCLOUD_SA_KEY: ${{ secrets.GCLOUD_SA_KEY }}
 
