@@ -3,7 +3,7 @@ set -e
 cd "${GITHUB_WORKSPACE:-$(dirname $0)/../..}"
 
 function module_name(){
-  echo "gcr.io/bootiful/$1"
+  echo "gcr.io/pgtm-jlong/$1"
 }
 
 function deploy_module(){
